@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Task } from '../model'
 import {AiFillDelete, AiFillEdit} from 'react-icons/ai';
 import {MdDone} from 'react-icons/md';
@@ -32,11 +32,23 @@ const SingleTask = ({task, tasks, setTasks}: Props) => {
         setEdit(false);
     };
     
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    useEffect(() => {
+      inputRef.current?.focus();
+    }, [edit])
+    
+    
   return (
     <form className='tasks_single' onSubmit={(e)=>handleEdit(e,task.id)}>
         {
             edit ? (
-                <input className='tasks_single--text' value={editTask} onChange={(e)=>setEditTask(e.target.value)}/>
+                <input  
+                    ref={inputRef}
+                    className='tasks_single--text' 
+                    value={editTask} 
+                    onChange={(e)=>setEditTask(e.target.value)}
+                />
             ) : (
                 task.isDone ? (
                     <s className="tasks_single--text">{task.todo}</s>
