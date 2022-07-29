@@ -10,15 +10,37 @@ interface Props{
 
 const TaskList = ({tasks, setTasks}:Props) => {
   return (
-    <div className='tasks'>
-        {tasks.map( task => (
+    <div className="container">
+      <div className="tasks">
+        <span className="tasks_heading">
+          Active Tasks
+        </span>
+        {
+          tasks.map(task => (
             <SingleTask 
-                task={task} 
-                key={task.id}
-                tasks={tasks}
-                setTasks={setTasks}
+              task={task}
+              tasks={tasks}
+              key={task.id}
+              setTasks={setTasks}
             />
-        ) )}
+          ))
+        }
+      </div>
+      <div className="tasks remove">
+      <span className="tasks_heading">
+          Completed Tasks
+        </span>
+        {
+          tasks.map(task => (
+            <SingleTask 
+              task={task}
+              tasks={tasks}
+              key={task.id}
+              setTasks={setTasks}
+            />
+          ))
+        }
+      </div>      
     </div>
   )
 }
