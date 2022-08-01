@@ -28,9 +28,3 @@
         font-size: 25px;
         cursor: pointer;
     }
-    
-    @media (max-width: 700px) {
-        .tasks_single {
-            width: 100%;
-        }
-    }
